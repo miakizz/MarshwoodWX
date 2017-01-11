@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style type="text/css">
+			.large-info {
+				font-size: 4.7rem;
+			}
+    	#wrap { width: 600px; height: 390px; padding: 0; overflow: hidden; }
+    #frame { width: 800px; height: 520px; border: 1px solid black; }
+    #frame {
+   transform: scale(1.4);
+   transform-origin: 0% 0%;
+    }
+		</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+
+	<body onload="startTime()">
+		<!--Import jQuery before materialize.js-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="scriptsource.js"></script>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo" style="padding-left: 0.9rem;">Marshwood Weather</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down" style="padding-right: 0.9rem;">
+					<li><div id="curTime" style="font-size: 1.85rem;"></div></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="row">
+			<div class="col s12 m2">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Tempurature</span>
+						<h1 class="large-info">$current.outTemp</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m2">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Humidity</span>
+							<h1 class="large-info">$current.outHumidity</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m2">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Windchill</span>
+							<h1 class="large-info">$current.windchill</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m2">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Inside Tempurature</span>
+							<h1 class="large-info">$current.inTemp</h1>
+					</div>
+				</div>
+			</div>			
+			<div class="col s12 m2">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Wind Direction</span>
+							<h1 class="large-info">$current.windSpeed $current.windDir.ordinal_compass</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m2">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Heat Index</span>
+							<h1 class="large-info">$current.heatindex</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="width:66%; display: inline-block; vertical-align:top;">
+			<div class="col s12 m3">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Rain Today</span>
+							<h1 class="large-info">$day.rain.sum</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m3">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Rain Rate</span>
+							<h1 class="large-info">$current.rainRate</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m3">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Sunrise</span>
+							<h1 class="large-info">$almanac.sun.rise.string($sun_None)</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m3">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Sunset</span>
+							<h1 class="large-info">$almanac.sun.set.string($sun_None)</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<iframe id="frame" style="border: 0px none;" id="forecast_embed" type="text/html" frameborder="0" height="245" width="1px !important" src="http://forecast.io/embed/#lat=43.2007&amp;lon=-70.7974&amp;name=$station.location"></iframe>
+		<div class="row" style="width:16.66%; display: inline-block; vertical-align:top;">
+			<div class="col s12 m12" style="margin-top: -341px;margin-left: 475px;">
+				<div class="card blue-grey darken-1">
+					<div class="card-image">
+						<img src="moon.jpg" class="responsive-img">
+					</div>
+					<div class="card-content white-text">
+						<span class="card-title">Moon Phase</span>
+							<h1 class="large-info">$almanac.moon_phase</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
