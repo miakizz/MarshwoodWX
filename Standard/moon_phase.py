@@ -9,7 +9,7 @@ def enable_cors():
 @route('/')
 def index():
     # Get the moon phase data
-	response = requests.get('https://api.darksky.net/forecast/***REMOVED***/43.200710,-70.797379,2017-01-11T12:59:00-0500')
+	response = requests.get('https://api.darksky.net/forecast/' + key + '/43.200710,-70.797379,2017-01-11T12:59:00-0500')
     # We multiply by 100 and convert to int for exact comparisons:
 	moon_phase = int(response.json()["daily"]["data"][0]["moonPhase"] * 100)
     # Based off the number, get a description:
@@ -34,5 +34,8 @@ def index():
 		moon_str = "Error"
     # Finally, return the description:
 	return moon_str
-    
+
+key_file = open("key.txt")    
+key = key_file.read()
+
 run(host='localhost', port=8080)
