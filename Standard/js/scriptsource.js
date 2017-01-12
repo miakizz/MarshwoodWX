@@ -21,6 +21,8 @@ function getData() {
         
         //Now that the sunrise and sunset has been loaded, adjust the iframe:
         adjustFrame();
+        //Also, resize the frame whenever the window is resized:
+        window.addEventListener("resize", adjustFrame);
     });
     $.get("http://localhost:8080", function(result) {
         //Set the moon phase status to whatever the local server gives us back:
