@@ -20,11 +20,3 @@
     position: absolute;
     left: 0;
 }
-/* Make the second and third rows next to each other: */
-#row2, #row3 {
-    display: inline-block;
-    vertical-align: top;
-}
-/* Give #row2 2/3 of the screen width and #row3 1/6 of the screen width: */
-#row2 { width: 66.67%; }
-#row3 { width: 16.67%; }

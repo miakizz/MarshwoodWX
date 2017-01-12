@@ -29,11 +29,20 @@ function getData() {
 }
 
 function adjustFrame() {
-    //Set the top of the iframe to the bottom of the second row:
-    var secondRow = $("#row2");
-    var secondRowYOffset = secondRow.offset().top+secondRow.height();
-    //Remember to add window.scrollY since getBoundingClientRect() is affected by scrolling.
-    $("#frame").css("top", (window.scrollY+secondRowYOffset)+"px")
+    //This stores what will be the top attribute of the iframe:
+    var getOffset = 0;
+    //Get the elements which we want to above above the iframe:
+    var aboveFrameElems = $(".above-frame");
+    for (var i = 0; i < aboveFrameElems.length; i++) {
+        //Get the current element:
+        var curElem = aboveFrameElems.get(i);
+        //Get its bottom:
+        //Remember to add window.scrollY since getBoundingClientRect() is relative to the window, not the document:
+        var curElemBottom = curElem.getBoundingClientRect().bottom+window.scrollY;
+        //Make getOffset the maximum of all of the bottoms:
+        getOffset = Math.max(getOffset, curElemBottom);
+    }
+    $("#frame").css("top", getOffset+"px")
     
     //This is done so that it goes after the sunrise/sunset blocks, but can be next to the moon phase block.
 }
