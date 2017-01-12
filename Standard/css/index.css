@@ -17,6 +17,7 @@
     border: 0px;
     transform: scale(1.4);
     transform-origin: 0% 0%;
+    /* This makes the iframe absolute so we can position it just where we want it. We use JavaScript to set the top attribute. */
     position: absolute;
-    left: 0;
+    left: 0.75rem;
 }
