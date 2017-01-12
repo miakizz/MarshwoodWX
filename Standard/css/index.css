@@ -1,0 +1,30 @@
+/* Give the things at the top some space on the sides: */
+#title {
+    padding-left: 0.9rem;
+}
+#curTime {
+    padding-right: 0.9rem;
+    /* Also, give the time a 1.85 font size: */
+    font-size: 1.85rem;
+}
+/* This sets the font of the moon phase: */
+.large-info {
+    font-size: 4.7rem;
+}
+/* This applies to the image in the lower-left hand corner: */
+#frame {
+    width: 40%;
+    border: 0px;
+    transform: scale(1.4);
+    transform-origin: 0% 0%;
+    position: absolute;
+    left: 0;
+}
+/* Make the second and third rows next to each other: */
+#row2, #row3 {
+    display: inline-block;
+    vertical-align: top;
+}
+/* Give #row2 2/3 of the screen width and #row3 1/6 of the screen width: */
+#row2 { width: 66.67%; }
+#row3 { width: 16.67%; }
