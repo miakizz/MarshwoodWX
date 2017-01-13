@@ -1,0 +1,23 @@
+/* Give the things at the top some space on the sides: */
+#title {
+    padding-left: 0.9rem;
+}
+#curTime {
+    padding-right: 0.9rem;
+    /* Also, give the time a 1.85 font size: */
+    font-size: 1.85rem;
+}
+/* This sets the font of the moon phase: */
+.large-info {
+    font-size: 4.7rem;
+}
+/* This applies to the image in the lower-left hand corner: */
+#frame {
+    width: 40%;
+    border: 0px;
+    transform: scale(1.4);
+    transform-origin: 0% 0%;
+    /* This makes the iframe absolute so we can position it just where we want it. We use JavaScript to set the top attribute. */
+    position: absolute;
+    left: 0.75rem;
+}
