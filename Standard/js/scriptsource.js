@@ -1,9 +1,6 @@
-//This stores the current date object:
-var today = null;
-function updateTime() {
-    //Update today:
-    today = new Date();
+function startTime() {
     //Insert the local time string into #curTime:
+    var today = new Date();
     $("#curTime").text(today.toLocaleTimeString("en-US"));
 }
 
@@ -27,19 +24,10 @@ function getData() {
         //Also, resize the frame whenever the window is resized:
         window.addEventListener("resize", adjustFrame);
     });
-    //Set the moon phase data for MHS's location:
-    $.getJSON("http://api.usno.navy.mil/rstt/oneday", {date: today.toLocaleDateString("en-US"), coords: "43.2007N,70.7974W"}, function(result) {
-        //If curphase is specified, then put it in #moonPhase:
-        if (result.hasOwnProperty("curphase")) $("#moonPhase").text(result.curphase);
-        //Otherwise, use closestphase.phase:
-        else $("#moonPhase").text(result.closestphase.phase);
-    });
-    
-    //This is old code which we might need to bring back later:
-    /*$.get("http://localhost:8080", function(result) {
+    $.get("http://localhost:8080", function(result) {
         //Set the moon phase status to whatever the local server gives us back:
         $('#moonPhase').text(result);
-    });*/
+    });
 }
 
 function adjustFrame() {
@@ -62,8 +50,8 @@ function adjustFrame() {
 }
 
 //Set the time:
-updateTime();
+startTime();
 //Keep updating the time two times every second:
-setInterval(updateTime, 500);
+setInterval(startTime, 500);
 //Get the API data:
 getData();
