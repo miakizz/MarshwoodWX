@@ -34,12 +34,6 @@ function getData() {
         //Otherwise, use closestphase.phase:
         else $("#moonPhase").text(result.closestphase.phase);
     });
-    
-    //This is old code which we might need to bring back later:
-    /*$.get("http://localhost:8080", function(result) {
-        //Set the moon phase status to whatever the local server gives us back:
-        $('#moonPhase').text(result);
-    });*/
 }
 
 function adjustFrame() {
