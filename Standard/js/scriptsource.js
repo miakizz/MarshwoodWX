@@ -27,8 +27,8 @@ function getData() {
         //Also, resize the frame whenever the window is resized:
         window.addEventListener("resize", adjustFrame);
     });
-    //Set the moon phase data for today's date in MHS' timezone for MHS' location:
-    $.getJSON("http://api.usno.navy.mil/rstt/oneday", {date: today.toLocaleDateString("en-US"), tz: -5, coords: "43.2007N,70.7974W"}, function(result) {
+    //Set the moon phase data for MHS's location:
+    $.getJSON("http://api.usno.navy.mil/rstt/oneday", {date: today.toLocaleDateString("en-US"), coords: "43.2007N,70.7974W"}, function(result) {
         //If curphase is specified, then put it in #moonPhase:
         if (result.hasOwnProperty("curphase")) $("#moonPhase").text(result.curphase);
         //Otherwise, use closestphase.phase:
