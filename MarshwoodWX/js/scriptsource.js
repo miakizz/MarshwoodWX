@@ -1,13 +1,26 @@
 //This stores the current date object:
 var today = null;
 function updateTime() {
+    /* This function updates the #cur-time element. */
+    
     //Update today:
     today = new Date();
-    //Insert the local time string into #curTime:
-    $("#curTime").text(today.toLocaleTimeString("en-US"));
+    //Insert the local time string into #cur-time:
+    $("#cur-time").text(today.toLocaleTimeString("en-US"));
+}
+
+function changeWindDir() {
+    /* This function clears #wind-direction if the wind speed is 0 mph. */
+    
+    //Get the #wind-direction element:
+    var windDirElem = $("#wind-direction");
+    //If it's text is N/A, then clear it:
+    if (windDirElem.text() === "N/A") windDirElem.text("");
 }
 
 function getData() {
+    /* This function gets the JSON data from APIs and puts it into the Web page. */
+    
     //When passed into .toLocaleTimeString() with "en-US", this will yield a time with only the hour, minute, and AM/PM:
     var timeOptions = {
         "hour": "numeric",
@@ -37,6 +50,8 @@ function getData() {
 }
 
 function adjustFrame() {
+    /* This function positions the #frame element below the .above-frame elements. */
+    
     //This stores what will be the top attribute of the iframe:
     var getOffset = 0;
     //Get the elements which we want to above above the iframe:
@@ -50,13 +65,14 @@ function adjustFrame() {
         //Make getOffset the maximum of all of the bottoms:
         getOffset = Math.max(getOffset, curElemBottom);
     }
+    //Finally, set the #frame's top attribute so that it is beneath all of the .above-frame elements:
     $("#frame").css("top", getOffset+"px")
-    
-    //This is done so that it goes after the sunrise/sunset blocks, but can be next to the moon phase block.
 }
 
 //Set the time:
 updateTime();
+//Get rid of the wind direction if it isn't needed:
+changeWindDir();
 //Keep updating the time two times every second:
 setInterval(updateTime, 500);
 //Get the API data:
