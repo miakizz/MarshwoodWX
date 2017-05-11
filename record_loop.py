@@ -1,6 +1,6 @@
 '''
-This is a service for weewx that logs the data from LOOP packets and archive records.
-/usr/share/weewx/user/test_service.py is a symbolic link to this file, which is originally from /home/weather/MarshwoodWX/test_service.py
+This is a service for weewx that logs the data from LOOP packets.
+/usr/share/weewx/user/record_loop.py is a symbolic link to this file, which is originally from /home/weather/MarshwoodWX/record_loop.py
 In order to make it run, add user.record_loop.Recorder to the list of report_services in /etc/weewx/weewx.conf
 '''
 
