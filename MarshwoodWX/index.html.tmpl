@@ -24,7 +24,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Temperature</span>
-            <h1 class="large-info">$current.outTemp</h1>
+            <h1 class="large-info" id="out-temp">$current.outTemp</h1>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Humidity</span>
-            <h1 class="large-info">$current.outHumidity</h1>
+            <h1 class="large-info" id="out-humidity">$current.outHumidity</h1>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Windchill</span>
-            <h1 class="large-info">$current.windchill</h1>
+            <h1 class="large-info" id="windchill">$current.windchill</h1>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Inside Temperature</span>
-              <h1 class="large-info">$current.inTemp</h1>
+              <h1 class="large-info" id="in-temp">$current.inTemp</h1>
           </div>
         </div>
       </div>
@@ -56,8 +56,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Wind Direction</span>
-            <!-- The #wind-direction span is made so that it can be cleared whenever the wind direction is "N/A" because the wind speed is 0 mph. -->
-            <h1 class="large-info">$current.windSpeed <span id="wind-direction">$current.windDir.ordinal_compass</span></h1>
+            <h1 class="large-info"><span id="wind-speed">$current.windSpeed</span> <span id="wind-dir">$current.windDir.ordinal_compass</span></h1>
           </div>
         </div>
       </div>
@@ -65,7 +64,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Heat Index</span>
-              <h1 class="large-info">$current.heatindex</h1>
+              <h1 class="large-info" id="heatindex">$current.heatindex</h1>
           </div>
         </div>
       </div>
@@ -76,7 +75,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Rain Today</span>
-            <h1 class="large-info">$day.rain.sum</h1>
+            <h1 class="large-info" id="day-rain">$day.rain.sum</h1>
           </div>
         </div>
       </div>
@@ -84,7 +83,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Rain Rate</span>
-            <h1 class="large-info">$current.rainRate</h1>
+            <h1 class="large-info" id="rain-rate">$current.rainRate</h1>
           </div>
         </div>
       </div>
@@ -119,7 +118,7 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Pressure</span>
-            <h1 class="large-info">$current.barometer.mmHg</h1>
+            <h1 class="large-info" id="barometer">$current.barometer.mmHg</h1>
           </div>
         </div>
       </div>      

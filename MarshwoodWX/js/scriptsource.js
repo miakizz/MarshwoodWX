@@ -10,15 +10,15 @@ function updateTime() {
 }
 
 function changeWindDir() {
-    /* This function clears #wind-direction if the wind speed is 0 mph. */
+    /* This function clears #wind-dir if the wind speed is 0 mph. */
     
-    //Get the #wind-direction element:
-    var windDirElem = $("#wind-direction");
+    //Get the #wind-dir element:
+    var windDirElem = $("#wind-dir");
     //If it's text is N/A, then clear it:
     if (windDirElem.text() === "N/A") windDirElem.text("");
 }
 
-function getData() {
+function getApiData() {
     /* This function gets the JSON data from APIs and puts it into the Web page. */
     
     //When passed into .toLocaleTimeString() with "en-US", this will yield a time with only the hour, minute, and AM/PM:
@@ -49,6 +49,40 @@ function getData() {
     });
 }
 
+//ordinalDirections[i] represents an arc with measure (360/16) degrees centered at the point i sixteenths-way around the circle:
+var ordinalDirections = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+function toOrdinalDir(deg) {
+    /* Given a degree measure, the below algorithm finds which arc the degree measure is in and then returns the corresponding ordinal direction. */
+    return ordinalDirections[Math.round(deg/(360/16)) % 16];
+}
+
+function getLoopData() {
+    /* This function gets the JSON data from the loop packet and puts it into the Web page. */
+    
+    $.getJSON("http://localhost:8000/", function(data) {
+        //Fill in the inside/outside temperature/windchill/heatindex as degrees Fahreinheit:
+        $("#out-temp").text(data.outTemp+" \u00b0F");
+        $("#in-temp").text(data.inTemp+" \u00b0F");
+        $("#windchill").text(data.windchill.toFixed(1)+" \u00b0F");
+        $("#heatindex").text(data.heatindex+" \u00b0F");
+        //Fill in the humidity as degrees Fahreinheit:
+        $("#out-humidity").text(data.outHumidity+"%");
+        //Fill in the windspeed as miles per hour:
+        $("#wind-speed").text(data.windSpeed+" mph");
+        //If the wind speed is not 0, add the ordinal direction:
+        if (data.windSpeed !== 0) $("#wind-dir").text(toOrdinalDir(data.windDir));
+        //Otherwise, clear the ordinal direction:
+        else $("#wind-dir").text("");
+        //Fill in the today's today rain as inches and the rain rate as inches per hour:
+        $("#day-rain").text(data.dayRain.toFixed(2)+" in");
+        $("#rain-rate").text(data.rainRate.toFixed(2)+" in/hr");
+        //Fill in the pressure as mmHg, but first, convert from inHg to mmHg:
+        $("#barometer").text((data.barometer*25.4).toFixed(1)+" mmHg");
+        //Just in case the above adjustments changed with height of a box, re-adjust the frame:
+        adjustFrame();
+    });
+}
+
 function adjustFrame() {
     /* This function positions the #frame element below the .above-frame elements. */
     
@@ -76,4 +110,7 @@ changeWindDir();
 //Keep updating the time two times every second:
 setInterval(updateTime, 500);
 //Get the API data:
-getData();
+getApiData();
+//Get the loop data every two seconds after the page loads:
+//Commented out because getLoopData is not ready for production yet.
+//setInterval(getLoopData, 2000);
