@@ -9,7 +9,11 @@ def serve_json(environ, start_response):
     # Get the data from the JSON file:
     with open("/home/weather/loop_packet.json", "rb") as file: data = file.read()
     # Start response with 200 status and JSON content-type:
-    start_response("200 OK", [("Content-Type", "application/json; charset=utf-8"), ("Content-Length", str(len(data)))])
+    # Remember to add Access-Control-Allow-Origin so AJAX will work.
+    start_response("200 OK", [
+        ("Content-Type", "application/json; charset=utf-8"), ("Content-Length", str(len(data))),
+        ("Access-Control-Allow-Origin", "*")
+    ])
     # Return the data from the file:
     return [data]
 
