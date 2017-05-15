@@ -61,10 +61,10 @@ function getLoopData() {
     
     $.getJSON("http://localhost:8000/", function(data) {
         //Fill in the inside/outside temperature/windchill/heatindex as degrees Fahreinheit:
-        $("#out-temp").text(data.outTemp+" \u00b0F");
-        $("#in-temp").text(data.inTemp+" \u00b0F");
-        $("#windchill").text(data.windchill.toFixed(1)+" \u00b0F");
-        $("#heatindex").text(data.heatindex+" \u00b0F");
+        $("#out-temp").text(data.outTemp.toFixed(1)+"\u00b0F");
+        $("#in-temp").text(data.inTemp.toFixed(1)+"\u00b0F");
+        $("#windchill").text(data.windchill.toFixed(1)+"\u00b0F");
+        $("#heatindex").text(data.heatindex.toFixed(1)+"\u00b0F");
         //Fill in the humidity as degrees Fahreinheit:
         $("#out-humidity").text(data.outHumidity+"%");
         //Fill in the windspeed as miles per hour:
@@ -112,5 +112,4 @@ setInterval(updateTime, 500);
 //Get the API data:
 getApiData();
 //Get the loop data every two seconds after the page loads:
-//Commented out because getLoopData is not ready for production yet.
-//setInterval(getLoopData, 2000);
+setInterval(getLoopData, 2000);
