@@ -9,13 +9,22 @@ function updateTime() {
     $("#cur-time").text(today.toLocaleTimeString("en-US"));
 }
 
-function changeWindDir() {
-    /* This function clears #wind-dir if the wind speed is 0 mph. */
+function fixWindDir() {
+    /* This function fixes the width of #wind-dir and clears #wind-dir if the wind speed is 0 mph. */
     
     //Get the #wind-dir element:
     var windDirElem = $("#wind-dir");
-    //If it's text is N/A, then clear it:
-    if (windDirElem.text() === "N/A") windDirElem.text("");
+    //Storethe current text in #wind-dir:
+    var originalWindDirText = windDirElem.text();
+    //If its text is N/A, then replace it with nothing:
+    if (originalWindDirText === "N/A") originalWindDirText = "";
+    //Fill #wind-dir with three characters:
+    windDirElem.text("ENE");
+    //Set the minimum width of #wind-dir to this three character width:
+    //This way, the wind direction box will not constantly change dimensions as the wind direction changes between directions like "N" to "NNW".
+    windDirElem.css("min-width", windDirElem.width()+"px");
+    //Restore #wind-dir to its original width:
+    windDirElem.text(originalWindDirText);
 }
 
 function getApiData() {
@@ -78,7 +87,7 @@ function getLoopData() {
         $("#rain-rate").text(data.rainRate.toFixed(2)+" in/hr");
         //Fill in the pressure as mmHg, but first, convert from inHg to mmHg:
         $("#barometer").text((data.barometer*25.4).toFixed(1)+" mmHg");
-        //Just in case the above adjustments changed with height of a box, re-adjust the frame:
+        //Just in case the above adjustments changed the height of a box, re-adjust the frame:
         adjustFrame();
     });
 }
@@ -105,8 +114,8 @@ function adjustFrame() {
 
 //Set the time:
 updateTime();
-//Get rid of the wind direction if it isn't needed:
-changeWindDir();
+//Fix the dimensions of the wind direction and clear it if it isn't needed:
+fixWindDir();
 //Keep updating the time two times every second:
 setInterval(updateTime, 500);
 //Get the API data:

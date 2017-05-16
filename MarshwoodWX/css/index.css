@@ -21,3 +21,7 @@
     position: absolute;
     left: 0.75rem;
 }
+/* This makes #wind-dir inline-block so that its dimensions can be fixed: */
+#wind-dir {
+    display: inline-block;
+}
