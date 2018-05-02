@@ -50,12 +50,13 @@ function getApiData() {
         window.addEventListener("resize", adjustFrame);
     });
     //Set the moon phase data for today's date in MHS' timezone for MHS' location:
-    $.getJSON("http://api.usno.navy.mil/rstt/oneday", {date: today.toLocaleDateString("en-US"), tz: -5, coords: "43.2007N,70.7974W"}, function(result) {
+    //Moon phase API no longer works
+    /*$.getJSON("http://api.usno.navy.mil/rstt/oneday", {date: today.toLocaleDateString("en-US"), tz: -5, coords: "43.2007N,70.7974W"}, function(result) {
         //If curphase is specified, then put it in #moonPhase:
         if (result.hasOwnProperty("curphase")) $("#moonPhase").text(result.curphase);
         //Otherwise, use closestphase.phase:
         else $("#moonPhase").text(result.closestphase.phase);
-    });
+    });*/
 }
 
 //ordinalDirections[i] represents an arc with measure (360/16) degrees centered at the point i sixteenths-way around the circle:
