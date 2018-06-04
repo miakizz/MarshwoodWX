@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''
 This hosts a WSGI server on localhost:8000 that returns a JSON file containing the data from the most recent LOOP packet.
 '''
