@@ -9,7 +9,7 @@ Weewx skin, useful for non-interactive displays, using Google Materlize
  * `restart_weewx.sh` is a shell script that restarts weewx if it fails to update the HTML page.
  * `test_packet.json` is a JSON file containing data from an example LOOP packet.
 
-# CRON jobs (added by using `crontab -e` command)
+# CRON jobs (added by using `sudo crontab -e` command)
 
     @reboot /home/weather/weewx/timesync.sh
     @reboot /home/weather/weewx/loop_server.py
